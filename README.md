@@ -7,5 +7,5 @@ the package is still in development.
 - To install the package use ```pip install .```
 - After all of that is done, use the ```pyin``` command in your terminal to run the package.
 # Screenshots
-![screenshots/screenshots/application-notselected or not a python file.png]
-![file selected.png]
+![idle](screenshots/application-notselected or not a python file.png)
+![selected](screenshots/file selected.png)
