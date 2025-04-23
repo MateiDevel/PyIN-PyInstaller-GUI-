@@ -1,4 +1,4 @@
 import subprocess
 
-def build(path):
-    subprocess.run(f'pyinstaller {path}')
+def build(path, isNoconsole):
+    subprocess.run(f'pyinstaller {path} {isNoconsole}')
