@@ -1,6 +1,7 @@
 # PyInstaller-GUI
 A front-end for the Python Library PyInstaller for making executables out of .py files.
 # Attention!
+- This package REQUIRES PyInstaller to be installed. Use ```pip install pyinstaller``` if you dont have it installed.
 - the package is still in development. 
 - When compiling a project , the output will be at 'C:\Users\user\dist\'.
 # Setup 
