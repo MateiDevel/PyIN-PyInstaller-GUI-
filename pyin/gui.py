@@ -31,7 +31,7 @@ class GUI(ctk.CTkFrame):
             path = filedialog.askopenfilename()
             ext = Path(path).suffix
             # print(ext)
-            if path and ext == '.py':
+            if path and ext == '.py' or ext == '.pyw':
                 filelable.configure(text=path)
                 buildbtn.pack(pady=30) # show btn
                 checkboxes()
