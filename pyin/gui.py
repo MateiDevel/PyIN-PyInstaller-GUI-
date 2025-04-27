@@ -9,13 +9,15 @@ class GUI(ctk.CTkFrame):
         self.configure(fg_color='transparent')
         self.pack(fill='both', expand=True)
         
-        self.path = None
-        self.isNoconsole = None
-
+        self.path = ''
+        self.isNoconsole = ''
+        self.name = ''
+        
         self.label = ctk.CTkLabel(self, text='PyInstaller-GUI')
         self.label.pack(pady=10)
         
         noconsole_var = ctk.BooleanVar()
+        name_var = ctk.BooleanVar()
         
         def checkboxes():
             def on():
@@ -23,9 +25,21 @@ class GUI(ctk.CTkFrame):
                     # print('cheeky breeky iv danke')
                     self.isNoconsole = '--noconsole'
                 else :
-                    self.isNoconsole = ''
+                    self.isNoconsole = ''   
+            def name_on():
+                if name_var.get():
+                    print('Enter app name : \n')
+                    self.name = '--name ' + input()
+                    while self.name == '':
+                        print('Please enter the app name: \n')
+                        self.name = '--name ' + input() 
+                else:
+                    self.name = ''          
+                
             noconsole = ctk.CTkCheckBox(self, text='No console', variable=noconsole_var, command=on)
-            noconsole.pack(pady=33)
+            noconsole.pack(pady=23, padx=20)
+            name = ctk.CTkCheckBox(self, text='Name', variable=name_var, command=name_on)
+            name.pack(pady=0, padx=20)
             
         def select():
             path = filedialog.askopenfilename()
@@ -39,8 +53,9 @@ class GUI(ctk.CTkFrame):
             else:
                 filelable.configure(text='This is not a python file...')
                 buildbtn.grid_remove() # hide btn
+                 
                 
-        buildbtn = ctk.CTkButton(self, text='Build' , command=lambda: build(self.path, self.isNoconsole)) # by default tk dosnt support func with parameters
+        buildbtn = ctk.CTkButton(self, text='Build' , command=lambda: build(self.path, self.isNoconsole, self.name)) # by default tk dosnt support func with parameters
                                                                                        
         filebtn = ctk.CTkButton(self, text='File', command=select)
         filebtn.pack(pady=20)
