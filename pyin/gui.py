@@ -12,15 +12,14 @@ class GUI(ctk.CTkFrame):
         self.path = ''
         self.isNoconsole = ''
         self.name = ''
+        self.onefile = ''
         
         self.label = ctk.CTkLabel(self, text='PyInstaller-GUI')
         self.label.pack(pady=10)
         
         noconsole_var = ctk.BooleanVar()
         name_var = ctk.BooleanVar()
-        
-        self.namebox = None
-        self.noconsoleBox = None
+        onefile_var = ctk.BooleanVar()
         
         def checkboxes():
             def on():
@@ -37,13 +36,20 @@ class GUI(ctk.CTkFrame):
                         print('Please enter the app name: \n')
                         self.name = '--name ' + input() 
                 else:
-                    self.name = ''          
+                    self.name = ''       
+            def onefile_on():
+                if onefile_var.get():
+                    self.onefile = '--onefile'
+                else:
+                    self.onefile = ''
                 
             noconsoleBox = ctk.CTkCheckBox(self, text='No console', variable=noconsole_var, command=on)
             noconsoleBox.place(x=70, y=170)
             namebox = ctk.CTkCheckBox(self, text='Name', variable=name_var, command=name_on)
             namebox.place(x=70, y=noconsoleBox.winfo_y() + 230)
-            
+            onefileBox = ctk.CTkCheckBox(self, text='One File', variable=onefile_var, command=onefile_on)
+            onefileBox.place(x=70, y=noconsoleBox.winfo_y()+ 290)
+                    
         def select():
             path = filedialog.askopenfilename()
             ext = Path(path).suffix
@@ -58,7 +64,7 @@ class GUI(ctk.CTkFrame):
                 buildbtn.place_forget() # hide btn
                  
                 
-        buildbtn = ctk.CTkButton(self, text='Build' , command=lambda: build(self.path, self.isNoconsole, self.name)) # by default tk dosnt support func with parameters
+        buildbtn = ctk.CTkButton(self, text='Build' , command=lambda: build(self.path, self.isNoconsole, self.name, self.onefile)) # by default tk dosnt support func with parameters
                                                                                        
         filebtn = ctk.CTkButton(self, text='File', command=select)
         filebtn.place(x=230, y=90)
