@@ -13,5 +13,5 @@ A front-end for the Python Library PyInstaller for making executables out of .py
 - To install the package use ```pip install .```
 - After all of that is done, use the ```pyin``` command in your terminal to run the package.
 # Screenshots
-![idle](screenshots/idle.png)
+![idle](screenshots/idle.png){ width=200 ; height=100 }
 ![selected](screenshots/selected.png)
